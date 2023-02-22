@@ -30,4 +30,126 @@
 <b>Power BI Report Server:</b>
 -
 <b>Some highlight DAX function:</b>
-- 
+- Agent Name Lookup = 
+Var Agent = IF(HASONEFILTER(Agency_Structure[Agent_Number]),values(Agency_Structure[Agent_Number]),BLANK())
+RETURN LOOKUPVALUE(Agent_List[Agent_Name],Agent_List[Agent_Number], Agent)
+  
+- Agent_List - Service Month = 
+VAR Agent = IF(HASONEFILTER(Agent_List[Agent_Number]), VALUES(Agent_List[Agent_Number]))
+VAR AgentAppointed = LOOKUPVALUE(Agent_List[Date_Appointed],Agent_List[Agent_Number],Agent)
+VAR fullMonthAppointed = IF(DAY(AgentAppointed)<=10,EDATE(AgentAppointed,-1),AgentAppointed)
+VAR filterdate = MAX(DimDate[Date])
+RETURN CALCULATE(DATEDIFF(IF(fullMonthAppointed>filterdate,filterdate,fullMonthAppointed),filterdate,MONTH))
+  
+- CC - AD = 
+VAR AD = IF(HASONEVALUE(AD_List[AD_Code]),values(AD_List[AD_Code]),blank())
+VAR L1 =
+CALCULATE(
+    [CC]
+    ,FactADHistory[L1NP] = AD
+)
+VAR L2 =
+CALCULATE(
+    [CC]
+    ,FactADHistory[L2NP] = AD
+)
+VAR L3 =
+CALCULATE(
+    [CC]
+    ,FactADHistory[L3NP] = AD
+)
+VAR L4 =
+CALCULATE(
+    [CC]
+    ,FactADHistory[L4NP] = AD
+)
+VAR L5 =
+CALCULATE(
+    [CC]
+    ,FactADHistory[L5NP] = AD
+)
+
+RETURN L1+L2+L3+L4+L5
+ 
+- CC_30Days 2 = 
+VAR startdate = MIN(DimAgent[Date_Appointed])
+VAR enddate = MAX(DimAgent[Date_Appointed])
+RETURN
+CALCULATE(SUM(Cal_AD_Daily_Policy[CountPolicy]),
+ALLEXCEPT(Cal_AD_Daily_Policy,Cal_AD_Daily_Policy[Issuing Agent]),
+Cal_AD_Daily_Policy[Date_Appointed] >= startdate && Cal_AD_Daily_Policy[Date_Appointed] <= enddate,
+Cal_AD_Daily_Policy[DateDif] <=30 && Cal_AD_Daily_Policy[DateDif] >=0)
+  
+- FPL - Sale Team = 
+VAR Agent = IF(HASONEFILTER(Agent_List[Agent_Number]),TOPN(1,VALUES(Agent_List[Agent_Number])),BLANK())
+VAR AgentAppointedDate = LOOKUPVALUE(Agent_List[Date_Appointed],Agent_List[Agent_Number],Agent)
+VAR AgentAppointedDateFullMonth =  IF(DAY(AgentAppointedDate) > 10, EDATE(AgentAppointedDate,-1),AgentAppointedDate)
+
+VAR L1 =  CALCULATE(
+    [Cal_FYPinclTopup],
+    Agency_Structure[Leader]=Agent,
+    Agency_Structure[GRADE] = "IC",
+    Agency_Structure[Leader Grade]<>"IC",
+    Cal_AD_Premium[Collected Date] >=AgentAppointedDateFullMonth
+    )
+
+VAR L2 =  CALCULATE(
+    [Cal_FYPinclTopup],
+    Agency_Structure[Agent_Number]=Agent,
+    Agency_Structure[GRADE] <> "IC",
+    Cal_AD_Premium[Collected Date] >=AgentAppointedDateFullMonth
+    )
+RETURN L1 + L2
+
+- FPW - Case Size = 
+VAR MinDate = Min(DimDate[Date])
+VAR MaxDate = Max(DimDate[Date])
+VAR MonthCount = DATEDIFF(MinDate,MaxDate,MONTH)+1
+RETURN DIVIDE([Hoi An - Sale Personal],[FPW - CC Personal],0)
+
+- FPW - FYP_no_Topup = 
+VAR Agent = IF(HASONEFILTER(Agent_List[Agent_Number]),TOPN(1,VALUES(Agent_List[Agent_Number])),BLANK())
+VAR L1 =  CALCULATE(
+    [Cal_FYP_no_Topup],
+    Agency_Structure[Leader]=Agent,
+    Agency_Structure[GRADE] = "IC",
+    Agency_Structure[Leader Grade] <> "IC"
+    )
+
+VAR SalePersonalAL =  CALCULATE(
+    [Cal_FYP_no_Topup],
+    Agency_Structure[Agent_Number]=Agent,
+    Agency_Structure[GRADE] <> "IC"
+    )
+RETURN L1 + SalePersonalAL +0
+  
+- FYP - AD = 
+VAR AD = IF(HASONEVALUE(AD_List[AD_Code]),values(AD_List[AD_Code]),blank())
+VAR L1 =
+CALCULATE(
+    [Cal_FYPinclTopup]
+    ,FactADHistory[L1NP] = AD
+)
+VAR L2 =
+CALCULATE(
+    [Cal_FYPinclTopup]
+    ,FactADHistory[L2NP] = AD
+)
+VAR L3 =
+CALCULATE(
+    [Cal_FYPinclTopup]
+    ,FactADHistory[L3NP] = AD
+)
+VAR L4 =
+CALCULATE(
+    [Cal_FYPinclTopup]
+    ,FactADHistory[L4NP] = AD
+)
+VAR L5 =
+CALCULATE(
+    [Cal_FYPinclTopup]
+    ,FactADHistory[L5NP] = AD
+)
+
+RETURN L1+L2+L3+L4+L5
+  
