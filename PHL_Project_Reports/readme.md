@@ -12,6 +12,16 @@
 ![image](https://user-images.githubusercontent.com/59658937/220508113-2e1ad753-26d8-47c6-89ac-3117f1c83c92.png)
 ![image](https://user-images.githubusercontent.com/59658937/220508183-1e378a0d-fcf4-441b-a504-a028c93f7a55.png)
 
+- Manpower Report:
+![image](https://user-images.githubusercontent.com/59658937/220508740-1ce53512-fa4f-49c3-9b46-1b3015653d7b.png)
+![image](https://user-images.githubusercontent.com/59658937/220508824-129e3795-98da-4ef1-9280-13a4f01939ae.png)
+
+- K2 Report:
+![image](https://user-images.githubusercontent.com/59658937/220512755-5e7911b9-c1f1-431d-8625-065f62ddab9c.png)
+
+- MDRT/COT/TOT Report:
+![image](https://user-images.githubusercontent.com/59658937/220513145-ec7bb708-bbbf-4844-8253-00fa5f2830fe.png)
+![image](https://user-images.githubusercontent.com/59658937/220513187-bb1639f6-b164-444b-a089-bea0a32056c7.png)
 
 - Hội An Trip Contest:
 ![image](https://user-images.githubusercontent.com/59658937/220505990-80fc08e5-0d2c-4d85-8fa4-a70c38fd0b75.png)
