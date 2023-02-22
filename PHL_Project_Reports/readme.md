@@ -28,6 +28,8 @@
 ![image](https://user-images.githubusercontent.com/59658937/220506120-482872af-def5-41f8-8faa-8b6e2b2a3788.png)
 
 <b>Power BI Report Server:</b>
+![image](https://user-images.githubusercontent.com/59658937/220514755-040bcc72-8dec-45fd-b5a9-2e0a4fffae77.png)
+![image](https://user-images.githubusercontent.com/59658937/220514667-9d5a556a-f097-4ba2-8efb-daf3eca0ed14.png)
 -
 <b>Some highlight DAX function:</b>
 - Agent Name Lookup = 
