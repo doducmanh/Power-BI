@@ -2,7 +2,7 @@
 - We design, architecture, visualize reports on Power BI Desktop RS, create maesures by using DAX.
 - Then upload, publish reports on to Power BI Report Server site, and schedule data refresh daily.
 
-**Due to the company's privacy policy, I cannot share the data details and must to hide company logo*
+**Due to the company's privacy policy, I cannot share the data details and must to hide company logo*<p>
 <b>Power BI Desktop:</b>
 - Sale Performance Report:
 ![image](https://user-images.githubusercontent.com/59658937/220507247-53138d49-d262-4a11-921f-b3b7a17bd5ec.png)
