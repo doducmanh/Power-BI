@@ -22,3 +22,34 @@ ADDCOLUMNS(
     "Month-Day", FORMAT([Date],"mmm DD"),
     "Month-Year", FORMAT([Date], "MM/YYYY")
 )
+hoặc:
+tạo list thời gian trong power query
+https://mastering-da.com/tao-bang-thoi-gian-trong-power-bi-desktop/
+hoặc: 
+CALENDAR(<StartDate>, <EndDate>) trong đó <StartDate>, <EndDate>  là 2 biến có định dạng ngày tháng (datetime) 
+Kết quả: trả về một bảng với một cột duy nhất, bao gồm tất cả các ngày nằm giữa <StartDate> và  <EndDate> có bao gồm cả <StartDate>, <EndDate>.  
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
