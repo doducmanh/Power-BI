@@ -1,0 +1,24 @@
+// Tạo bảng _MEASURES
+ROW("COLUMN",1)
+
+// Tạo bảng Date
+Date = 
+VAR MinDate = YEAR(MIN(FactCharging_J[dateTime]))
+VAR MaxDate = YEAR(MAX(FactCharging_J[dateTime]))
+RETURN 
+ADDCOLUMNS(
+    FILTER( 
+        CALENDARAUTO(), 
+        YEAR([Date]) >= MinDate &&
+        YEAR([Date]) <= MaxDate
+    ),
+    "Date Time", FORMAT([Date], "YYYY/MM/DD"),
+    "Year", YEAR([Date]),
+    "Quarter", FORMAT([Date], "\QQ"),
+    "Month", FORMAT([Date], "mmm"), 
+    "Month Number", MONTH([Date]),
+    "Weekday", FORMAT ( [Date], "dddd" ),
+    "Weekday number", WEEKDAY( [Date] ),
+    "Month-Day", FORMAT([Date],"mmm DD"),
+    "Month-Year", FORMAT([Date], "MM/YYYY")
+)
